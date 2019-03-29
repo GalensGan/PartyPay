@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace PayPartyMemberDues
 {
-    public partial class Form1 : Form
+    public partial class LogInForm : Form
     {
-        public Form1()
-        {
+        DownLoadInformation _partyInfos = null;
+        public LogInForm(DownLoadInformation info)
+        {            
             InitializeComponent();
+            _partyInfos = info;
         }
     }
 }
