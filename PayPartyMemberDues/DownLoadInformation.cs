@@ -21,9 +21,8 @@ namespace PayPartyMemberDues
         public string WeChatCode { set => _weChatCode = value; }
         public string AliPayCode { set => _aliPayCode = value; }
 
-        private  bool IsSystemActive = false;
         //配置文件位置
-        private string _configurationUrl = @"https://nj02cm01.baidupcs.com/file/017012abfc3741d1e9c2fee89f3063de?bkt=p3-1400017012abfc3741d1e9c2fee89f3063de7ede14b50000000008bd&fid=3291265560-250528-940630852061810&time=1553874588&sign=FDTAXGERLQBHSKfW-DCb740ccc5511e5e8fedcff06b081203-KAQCurvoewUBG67glHqnxu1bg5Q%3D&to=88&size=2237&sta_dx=2237&sta_cs=1&sta_ft=xml&sta_ct=0&sta_mt=0&fm2=MH%2CQingdao%2CAnywhere%2C%2Cbeijing%2Ccmnet&ctime=1553873391&mtime=1553873391&resv0=cdnback&resv1=0&vuk=3291265560&iv=0&htype=&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=1400017012abfc3741d1e9c2fee89f3063de7ede14b50000000008bd&sl=68616270&expires=8h&rt=sh&r=757174239&mlogid=2040804003527599748&vbdid=3132365251&fin=PartyPayconfiguration.xml&fn=PartyPayconfiguration.xml&rtype=1&dp-logid=2040804003527599748&dp-callid=0.1.1&hps=1&tsl=200&csl=200&csign=MeYL%2B%2FVzaV5EHCvsuS%2BuVUH5eFU%3D&so=0&ut=6&uter=4&serv=0&uc=2548494708&ti=76168191086d6f29c506b09cb16030a575dd39cf8651408d&by=themis";
+        private readonly string _configurationUrl = @"https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/PartyPayconfiguration.xml";
 
         //信息文件
         private string _infoUrl = null;
@@ -44,7 +43,7 @@ namespace PayPartyMemberDues
         {
             string str = DownLoadText(_infoUrl);
             Image wechatImage = DownLoadImage(_weChatCode);
-            _payCodeDic.Add("weChat", wechatImage);
+            _payCodeDic.Add("WeChat", wechatImage);
         }
 
         /// <summary>
@@ -53,8 +52,7 @@ namespace PayPartyMemberDues
         public void DownLoadConfigurationFile()
         {
             //不同的支部名称对应不同的地址
-            //下载配置文件
-            _configurationUrl = @"https://raw.githubusercontent.com/GalensGan/ArticleSourceCode/master/ArticleSourceCode/ArticleSourceCode.csproj";
+            //下载配置文件           
             string config = DownLoadText(_configurationUrl);
             _configDoc.LoadXml(config);           
         }
@@ -79,6 +77,18 @@ namespace PayPartyMemberDues
                 if (node.Attributes["Name"].Value == branchNmae) return true;
             }
             return false;
+        }
+
+        public List<string> GetAllPartyNames()
+        {
+            List<string> returnList = new List<string>();
+            //获取所有的节点数据
+            XmlNodeList xnl = _configDoc.SelectNodes("/PartyBranches");
+            foreach (XmlNode node in xnl)
+            {
+                returnList.Add(node.Attributes["Name"].Value);
+            }
+            return returnList;            
         }
 
         /// <summary>
