@@ -28,10 +28,10 @@ namespace PayPartyMemberDues
             if (comboBox1.SelectedIndex < 0) MessageBox.Show("请选择支部名称");
             else
             {
+                _partyInfos.BranchName = comboBox1.Text;
                 PayForm form = new PayForm(_partyInfos);
                 form.FormClosed += CloseForm;
-                this.Hide();
-                _partyInfos.BranchName = comboBox1.Text;
+                this.Hide();                
                 form.Show();
             }
         }

@@ -62,12 +62,14 @@ namespace PayPartyMemberDues
         private void GetPartyInfoDirectory(string branchName)
         {
             //获取所有的节点数据
-            XmlNodeList xnl = _configDoc.SelectNodes("/PartyBranches/PartyBranch[@name='" + branchName + "']");
-            foreach (XmlNode node in xnl)
+            XmlNodeList xmlNodeList = _configDoc.SelectNodes("/PartyBranches/PartyBranch[@name='" + branchName + "']");
+            if (xmlNodeList.Count == 0) return;
+            xmlNodeList = xmlNodeList[0].ChildNodes;
+            foreach (XmlNode node in xmlNodeList)
             {
-                if (node.Attributes["type"].Value == "InfoAddress") _infoUrl = node.Value;
-                if (node.Attributes["type"].Value == "WeChatQRCodeAddress") _weChatCode= node.Value;
-                if (node.Attributes["type"].Value == "AliPayQRCodeAddress") _aliPayCode = node.Value;
+                if (node.Attributes["type"].Value == "InfoAddress") _infoUrl = node.InnerText;
+                if (node.Attributes["type"].Value == "WeChatQRCodeAddress") _weChatCode= node.InnerText;
+                if (node.Attributes["type"].Value == "AliPayQRCodeAddress") _aliPayCode = node.InnerText;
             }
         }
 
