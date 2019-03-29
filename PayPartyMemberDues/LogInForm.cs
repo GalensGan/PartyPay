@@ -31,6 +31,7 @@ namespace PayPartyMemberDues
                 PayForm form = new PayForm(_partyInfos);
                 form.FormClosed += CloseForm;
                 this.Hide();
+                _partyInfos.BranchName = comboBox1.Text;
                 form.Show();
             }
         }

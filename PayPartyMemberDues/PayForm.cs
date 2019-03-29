@@ -17,7 +17,7 @@ namespace PayPartyMemberDues
         {
             InitializeComponent();
             _partyInfos = info;
-            info.BeginDownLoadInfo();
+            info.DownLoadMainInfo();
             pictureBox1.Image = info.GetPayQRCode(DownLoadInformation.PayQRCodeType.Wechat);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
         }
