@@ -25,8 +25,7 @@ namespace PayPartyMemberDues
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (info.CheckLocalEnvironment()) Application.Run(new PayForm(info));
-            else Application.Run(new LogInForm(info));
+            Application.Run(new LogInForm(info));
 
 
 

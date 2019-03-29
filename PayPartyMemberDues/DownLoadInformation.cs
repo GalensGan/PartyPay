@@ -11,7 +11,7 @@ namespace PayPartyMemberDues
     public class DownLoadInformation
     {
         //支付二维码
-        private Dictionary<string, Image> _payCodeDic = new Dictionary<string, Image>();
+        private Dictionary<PayQRCodeType, Image> _payCodeDic = new Dictionary<PayQRCodeType, Image>();
         //指示是否下载完成
         private readonly bool _isEndDownLoad = false;
         public bool IsEndDownLoad => _isEndDownLoad;
@@ -49,10 +49,10 @@ namespace PayPartyMemberDues
             //_partyInfoDoc.LoadXml(str);
             //下载微信支付
             Image wechatImage = DownLoadImage(_weChatCode);
-            _payCodeDic.Add("WeChat", wechatImage);
+            _payCodeDic.Add(PayQRCodeType.Wechat, wechatImage);
             //下载支付宝支付
             Image aliPayImage = DownLoadImage(_aliPayCode);
-            _payCodeDic.Add("AliPay", aliPayImage);
+            _payCodeDic.Add(PayQRCodeType.AliPay, aliPayImage);
         }
 
         /// <summary>
@@ -83,32 +83,7 @@ namespace PayPartyMemberDues
             string config = DownLoadText(_configurationUrl);
             _configDoc.LoadXml(config);
         }
-
-        /// <summary>
-        /// 检查本地状态
-        /// </summary>
-        /// <returns></returns>
-        public bool CheckLocalEnvironment()
-        {
-            //获取本地文件
-            string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"PartyPay\userConfig.txt";
-            //不存在时，直接返回false
-            if (!File.Exists(localPath)) return false;
-
-            StreamReader reader = new StreamReader(localPath);
-            string branchNmae = reader.ReadLine();
-            //获取所有的节点数据
-            XmlNodeList xnl = _configDoc.SelectNodes("/PartyBranches/PartyBranch");
-            foreach (XmlNode node in xnl)
-            {
-                if (node.Attributes["name"].Value == branchNmae)
-                {
-                    _branchName = branchNmae;
-                    return true;
-                } 
-            }
-            return false;
-        }
+        
 
         /// <summary>
         /// 获取所有支部的名称
@@ -127,13 +102,31 @@ namespace PayPartyMemberDues
         }
 
         /// <summary>
+        /// 获取所有的身份证信息
+        /// </summary>
+        /// <param name="branchName"></param>
+        /// <returns></returns>
+        public List<string> GetAllIds(string branchName)
+        {
+            List<string> returnList = new List<string>();
+            //获取所有的节点数据
+            XmlNodeList xmlNodeList = _configDoc.SelectNodes("/PartyInfos[@partyName='" + branchName + "']");
+            if (xmlNodeList.Count == 0) return null;
+            xmlNodeList = xmlNodeList[0].ChildNodes;
+            foreach (XmlNode node in xmlNodeList)
+            {
+                returnList.Add(node.Attributes["id"].Value);
+            }
+            return returnList;
+        }
+        /// <summary>
         /// 获取支付二维码
         /// </summary>
         /// <param name="qrName"></param>
         /// <returns></returns>
         public Image GetPayQRCode(PayQRCodeType qrName)
         {
-            if (_payCodeDic.ContainsKey(qrName.ToString())) return _payCodeDic[qrName.ToString()];
+            if (_payCodeDic.ContainsKey(qrName)) return _payCodeDic[qrName];
             else return null;
         }
 
