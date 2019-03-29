@@ -46,7 +46,7 @@ namespace PayPartyMemberDues
             GetPartyInfoDirectory(_branchName);
             //下载信息表
             string str = DownLoadText(_infoUrl);
-            _partyInfoDoc.LoadXml(str);
+            //_partyInfoDoc.LoadXml(str);
             //下载微信支付
             Image wechatImage = DownLoadImage(_weChatCode);
             _payCodeDic.Add("WeChat", wechatImage);
