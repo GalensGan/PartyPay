@@ -41,6 +41,14 @@ namespace PayPartyMemberDues
             //这里使用DownloadString方法，如果是不需要对文件的文本内容做处理，直接保存，那么可以直接使用功能DownloadFile(url,savepath)直接进行文件保存。
             string outText = webClient.DownloadString(url);
             return outText;
+            //HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+            //httpWebRequest.Method = "GET";
+            //using (WebResponse response = httpWebRequest.GetResponse())
+            //{
+            //    Stream stream = response.GetResponseStream();
+            //    StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+            //    return streamReader.ReadToEnd();
+            //}
         }
 
         /// <summary>
@@ -58,6 +66,17 @@ namespace PayPartyMemberDues
             };
             Image img = Image.FromStream(ms);
             return img;
+        }
+        public static string DownLoadStr(string textUrl)
+        {
+            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(textUrl);
+            httpWebRequest.Method = "GET";
+            using (WebResponse response = httpWebRequest.GetResponse())
+            {
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream, Encoding.UTF8);
+                return streamReader.ReadToEnd();
+            }
         }
     }
 }

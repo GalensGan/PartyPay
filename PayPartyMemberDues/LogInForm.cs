@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace PayPartyMemberDues
 {
     public partial class LogInForm : Form
     {
-        PayDuesInformation _payDuesInfos = null;
+        private PayDuesInformation _payDuesInfos = null;
         public LogInForm(PayDuesInformation info)
-        {            
+        {
             InitializeComponent();
             _payDuesInfos = info;
             LoadConfiguration();
@@ -44,7 +36,7 @@ namespace PayPartyMemberDues
                 //获取所有的节点数据
                 comboBox1.Items.Clear();
                 comboBox1.Items.AddRange(_payDuesInfos.GetAllBranchNames().ToArray());
-            }            
+            }
         }
 
         //登陆操作
@@ -52,14 +44,14 @@ namespace PayPartyMemberDues
         {
             if (comboBox1.SelectedIndex < 0) MessageBox.Show("请选择支部名称");
             else
-            {                
+            {
                 //先进行用户验证
                 if (!_payDuesInfos.CheckId(textBox1.Text)) return;
 
                 //激活主窗体
                 PayForm form = new PayForm(_payDuesInfos);
                 form.FormClosed += CloseForm;
-                this.Hide();                
+                Hide();
                 form.Show();
                 //覆盖本地的基本信息文件
                 SaveUserData();
@@ -70,13 +62,17 @@ namespace PayPartyMemberDues
         private void SaveUserData()
         {
             string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PartyPay\userConfig.txt";
-            System.IO.File.WriteAllText(localPath, comboBox1.Text+"\n"+textBox1.Text);
+            // 创建文件
+            FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.ReadWrite); //可以指定盘符，也可以指定任意文件名，还可以为word等文件
+            StreamWriter sw = new StreamWriter(fs); // 创建写入流
+            sw.WriteLine(comboBox1.Text+"\n"+textBox1.Text); 
+            sw.Close(); //关闭文件
         }
 
         //实现子窗体关闭，父窗体也关闭
         private void CloseForm(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         //根据不同的支部名称，加载不同的党员数据文件

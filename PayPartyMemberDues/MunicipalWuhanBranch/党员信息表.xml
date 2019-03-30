@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PartyInfos>	
+	<MonthInfo>
+		<Start>2019.01</Start>
+		<End>2019.03</End>
+		<Count>3</Count>
+	</MonthInfo>
+	<PartyMember id="210124197911143019">
+		<Name>李景合</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>35.1</DuesPerMonth>
+		<AppPhone>13545080826</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="342224198206061115">
+		<Name>刘燕飞</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>91.1</DuesPerMonth>
+		<AppPhone>13469962706</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="420684198512213531">
+		<Name>朱朝阳</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>48</DuesPerMonth>
+		<AppPhone>13971640659</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="420822198502275546">
+		<Name>罗晓媛</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>48</DuesPerMonth>
+		<AppPhone>15926459351</AppPhone>	
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="420583198302094034">
+		<Name>王  朋</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>35.1</DuesPerMonth>
+		<AppPhone>15377041628</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="432524198710152890">
+		<Name>刘从新</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>35.1</DuesPerMonth>
+		<AppPhone>18802710626</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="321321198903132718">
+		<Name>孙  磊</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>15827500691</AppPhone>	
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="341181199101122618">
+		<Name>李  洋</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>15802743205</AppPhone>	
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="43100319890826381X">
+		<Name>邓志刚</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>30</DuesPerMonth>
+		<AppPhone>18871985368</AppPhone>	
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="420581199205240038">
+		<Name>周许</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>13.7</DuesPerMonth>
+		<AppPhone>15527336853</AppPhone>	
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="130425198703057754">
+		<Name>陶金光</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>13971647956</AppPhone>
+		<Department>设计二所</Department>		
+	</PartyMember>
+	<PartyMember id="421122199201140063">
+		<Name>李林佩</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>13.7</DuesPerMonth>
+		<AppPhone>15172455445</AppPhone>	
+		<Department>设计四所</Department>		
+	</PartyMember>
+	<PartyMember id="42282619851211206X">
+		<Name>杨  洪</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>38</DuesPerMonth>
+		<AppPhone>13207183225</AppPhone>	
+		<Department>设计四所</Department>		
+	</PartyMember>
+	<PartyMember id="41018119861214722X">
+		<Name>刘雪利</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>13476267644</AppPhone>	
+		<Department>设计四所</Department>		
+	</PartyMember>
+	<PartyMember id="420111198910255029">
+		<Name>胡碧莹</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>12.5</DuesPerMonth>
+		<AppPhone>13554631025</AppPhone>	
+		<Department>设计四所</Department>		
+	</PartyMember>
+	<PartyMember id="360425199110294014">
+		<Name>左宇宇</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>12.5</DuesPerMonth>
+		<AppPhone>18627855676</AppPhone>
+		<Department>设计四所</Department>		
+	</PartyMember>
+	<PartyMember id="610521198709200974">
+		<Name>宋 兴</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>15972176064</AppPhone>	
+		<Department>BIM研发中心</Department>
+	</PartyMember>
+	<PartyMember id="420117198510270041">
+		<Name>黄 琳</Name>
+		<Gender>女</Gender>
+		<DuesPerMonth>32.4</DuesPerMonth>
+		<AppPhone>15827426427</AppPhone>	
+		<Department>BIM研发中心</Department>		
+	</PartyMember>
+	<PartyMember id="500239199212280370">
+		<Name>甘明昔</Name>
+		<Gender>男</Gender>
+		<DuesPerMonth>10</DuesPerMonth>
+		<AppPhone>15927306552</AppPhone>	
+		<Department>BIM研发中心</Department>
+	</PartyMember>
+</PartyInfos>

@@ -94,6 +94,9 @@
   <ItemGroup>
     <Content Include="ConfigurationFile\BranchConfiguration.xml" />
     <Content Include="ConfigurationFile\PartyPayConfiguration.xml" />
+    <Content Include="MunicipalWuhanBranch\党员信息表.xml" />
+    <Content Include="MunicipalWuhanBranch\微信支付.jpg" />
+    <Content Include="MunicipalWuhanBranch\支付宝支付.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
