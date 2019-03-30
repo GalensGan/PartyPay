@@ -42,7 +42,11 @@ namespace PayPartyMemberDues
             string config = null;
             foreach (XmlNode node in xmlNodeList)
             {
-                config=node["clientAddress"].InnerText;
+                if (node.Name == branchName)
+                {
+                    config = node.InnerText;
+                    break;
+                }
             }
             config = CommonSDK.DownLoadText(_configurationUrl);
             _branchConfigDoc.LoadXml(config);
@@ -113,6 +117,16 @@ namespace PayPartyMemberDues
         {
             Wechat,
             AliPay
-        }        
+        }
+
+        /// <summary>
+        /// 获取支付二维码
+        /// </summary>
+        /// <param name="qRCodeType"></param>
+        /// <returns></returns>
+        public Image GetPayQRCode(PayQRCodeType qRCodeType)
+        {
+          return  _currentPartyInfo.GetPayQRCode(qRCodeType);
+        }
     }
 }
