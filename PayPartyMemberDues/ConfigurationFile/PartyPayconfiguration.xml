@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PartyBranches>
 	<PartyBranch name="中国市政工程西北设计院武汉分院党支部">
-    <clientAddress>aabb</clientAddress>
+    <clientAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/BranchConfiguration.xml</clientAddress>
 	</PartyBranch>
 </PartyBranches>
