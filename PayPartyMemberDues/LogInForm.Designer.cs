@@ -43,6 +43,7 @@
             this.comboBox1.Size = new System.Drawing.Size(349, 23);
             this.comboBox1.TabIndex = 0;
             this.comboBox1.Text = "选择支部名称";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button1
             // 

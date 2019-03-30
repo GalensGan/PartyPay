@@ -51,10 +51,12 @@ namespace PayPartyMemberDues
             if (comboBox1.SelectedIndex < 0) MessageBox.Show("请选择支部名称");
             else
             {
+                _partyInfos.BranchName = comboBox1.Text;
+                
                 //先进行用户验证
                 if (!UserAuthentication()) return;
                 //激活主窗体
-                _partyInfos.BranchName = comboBox1.Text;
+               
                 //覆盖本地的基本信息文件
                 PayForm form = new PayForm(_partyInfos);
                 form.FormClosed += CloseForm;
@@ -90,6 +92,16 @@ namespace PayPartyMemberDues
         private void CloseForm(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private int lastIndex = -1;
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lastIndex != comboBox1.SelectedIndex)
+            {
+                _partyInfos.DownLoadMainInfo();
+                lastIndex = comboBox1.SelectedIndex;
+            }
         }
     }
 }

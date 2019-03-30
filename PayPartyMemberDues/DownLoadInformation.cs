@@ -46,7 +46,7 @@ namespace PayPartyMemberDues
             GetPartyInfoDirectory(_branchName);
             //下载信息表
             string str = DownLoadText(_infoUrl);
-            //_partyInfoDoc.LoadXml(str);
+            _partyInfoDoc.LoadXml(str);
             //下载微信支付
             Image wechatImage = DownLoadImage(_weChatCode);
             _payCodeDic.Add(PayQRCodeType.Wechat, wechatImage);
@@ -62,7 +62,7 @@ namespace PayPartyMemberDues
         private void GetPartyInfoDirectory(string branchName)
         {
             //获取所有的节点数据
-            XmlNodeList xmlNodeList = _configDoc.SelectNodes("/PartyBranches/PartyBranch[@name='" + branchName + "']");
+            XmlNodeList xmlNodeList = _partyInfoDoc.SelectNodes("/PartyBranches/PartyBranch[@name='" + branchName + "']");
             if (xmlNodeList.Count == 0) return;
             xmlNodeList = xmlNodeList[0].ChildNodes;
             foreach (XmlNode node in xmlNodeList)
@@ -110,7 +110,7 @@ namespace PayPartyMemberDues
         {
             List<string> returnList = new List<string>();
             //获取所有的节点数据
-            XmlNodeList xmlNodeList = _configDoc.SelectNodes("/PartyInfos[@partyName='" + branchName + "']");
+            XmlNodeList xmlNodeList = _partyInfoDoc.SelectNodes("/PartyInfos[@partyName='" + branchName + "']");
             if (xmlNodeList.Count == 0) return null;
             xmlNodeList = xmlNodeList[0].ChildNodes;
             foreach (XmlNode node in xmlNodeList)
