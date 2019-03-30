@@ -23,6 +23,7 @@ namespace PayPartyMemberDues
         {
             //获取所有的节点数据
             XmlNodeList xmlNodeList = branchConfig.SelectNodes("/PartyBranches/PartyBranch");
+            xmlNodeList = xmlNodeList[0].ChildNodes;
             //获取所有的地址信息
             foreach (XmlNode node in xmlNodeList)
             {
@@ -49,7 +50,7 @@ namespace PayPartyMemberDues
                 }
             }
             //加载信息文件
-            
+            LoadPartyInfo();
         }
 
         //加载信息文件

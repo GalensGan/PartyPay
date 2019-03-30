@@ -42,13 +42,15 @@ namespace PayPartyMemberDues
             string config = null;
             foreach (XmlNode node in xmlNodeList)
             {
-                if (node.Name == branchName)
+                if (node.Name == "clientAddress")
                 {
                     config = node.InnerText;
                     break;
                 }
             }
-            config = CommonSDK.DownLoadText(_configurationUrl);
+            config = CommonSDK.DownLoadText(config);
+            
+            //从程序配置文件加载支部配置文件
             _branchConfigDoc.LoadXml(config);
             
             //加载党员信息
