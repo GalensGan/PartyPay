@@ -53,7 +53,8 @@
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CommonSDK.cs" />
-    <Compile Include="DownLoadInformation.cs" />
+    <Compile Include="PartyInformations.cs" />
+    <Compile Include="PayDuesInformation.cs" />
     <Compile Include="PayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,7 +92,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConfigurationFile\PartyPayconfiguration.xml" />
+    <Content Include="ConfigurationFile\BranchConfiguration.xml" />
+    <Content Include="ConfigurationFile\PartyPayConfiguration.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

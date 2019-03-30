@@ -14,16 +14,16 @@ namespace PayPartyMemberDues
 {
     public partial class LogInForm : Form
     {
-        DownLoadInformation _partyInfos = null;
-        public LogInForm(DownLoadInformation info)
+        PayDuesInformation _payDuesInfos = null;
+        public LogInForm(PayDuesInformation info)
         {            
             InitializeComponent();
-            _partyInfos = info;
-            CheckLocalEnvironment();
+            _payDuesInfos = info;
+            LoadConfiguration();
         }
 
-        // 检查本地状态
-        public void CheckLocalEnvironment()
+        //根据程序的配置文件，下载所有的党支部名称
+        public void LoadConfiguration()
         {
             //获取本地文件
             string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PartyPay\userConfig.txt";
@@ -43,25 +43,26 @@ namespace PayPartyMemberDues
             {
                 //获取所有的节点数据
                 comboBox1.Items.Clear();
-                comboBox1.Items.AddRange(_partyInfos.GetAllPartyNames().ToArray());
+                comboBox1.Items.AddRange(_payDuesInfos.GetAllBranchNames().ToArray());
             }            
         }
+
+        //登陆操作
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedIndex < 0) MessageBox.Show("请选择支部名称");
             else
-            {
-                _partyInfos.BranchName = comboBox1.Text;
-                
+            {                
                 //先进行用户验证
-                if (!UserAuthentication()) return;
+                if (!_payDuesInfos.CheckId(textBox1.Text)) return;
+
                 //激活主窗体
-               
-                //覆盖本地的基本信息文件
-                PayForm form = new PayForm(_partyInfos);
+                PayForm form = new PayForm(_payDuesInfos);
                 form.FormClosed += CloseForm;
                 this.Hide();                
                 form.Show();
+                //覆盖本地的基本信息文件
+                SaveUserData();
             }
         }
 
@@ -69,37 +70,22 @@ namespace PayPartyMemberDues
         private void SaveUserData()
         {
             string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PartyPay\userConfig.txt";
-            System.IO.File.WriteAllText(localPath, comboBox1.Text);
+            System.IO.File.WriteAllText(localPath, comboBox1.Text+"\n"+textBox1.Text);
         }
 
-        //用户验证
-        private bool UserAuthentication()
-        {
-            List<string> namesList = _partyInfos.GetAllIds(comboBox1.Text);
-            if (namesList == null)
-            {
-                MessageBox.Show("不存在当前党支部名称");
-                return false;
-            }
-            foreach (string str in namesList)
-            {
-                if (str == textBox1.Text) return true;                   
-            }
-            MessageBox.Show("您不属于当前党支部");
-            return false;
-        }
-
+        //实现子窗体关闭，父窗体也关闭
         private void CloseForm(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //根据不同的支部名称，加载不同的党员数据文件
         private int lastIndex = -1;
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lastIndex != comboBox1.SelectedIndex)
             {
-                _partyInfos.DownLoadMainInfo();
+                _payDuesInfos.LoadBranchConfig(comboBox1.Text);
                 lastIndex = comboBox1.SelectedIndex;
             }
         }
