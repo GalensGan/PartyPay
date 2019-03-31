@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PayForm));
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.WelcomLabel = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -62,15 +62,15 @@
             this.pictureBox1.TabIndex = 5;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // WelcomLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Location = new System.Drawing.Point(24, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(360, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "尊敬的党员李四同志，欢迎您使用党费自助缴纳系统!";
+            this.WelcomLabel.AutoSize = true;
+            this.WelcomLabel.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.WelcomLabel.Location = new System.Drawing.Point(24, 16);
+            this.WelcomLabel.Name = "WelcomLabel";
+            this.WelcomLabel.Size = new System.Drawing.Size(360, 15);
+            this.WelcomLabel.TabIndex = 6;
+            this.WelcomLabel.Text = "尊敬的党员李四同志，欢迎您使用党费自助缴纳系统!";
             // 
             // listView1
             // 
@@ -89,7 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 576);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.WelcomLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.comboBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -105,7 +105,7 @@
         #endregion
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label WelcomLabel;
         private System.Windows.Forms.ListView listView1;
     }
 }

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="APartyMemberInfo.cs" />
     <Compile Include="LogInForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -53,7 +54,7 @@
       <DependentUpon>LogInForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CommonSDK.cs" />
-    <Compile Include="PartyInformations.cs" />
+    <Compile Include="PartyBranchInformations.cs" />
     <Compile Include="PayDuesInformation.cs" />
     <Compile Include="PayForm.cs">
       <SubType>Form</SubType>

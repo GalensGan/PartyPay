@@ -11,7 +11,10 @@ namespace PayPartyMemberDues
     public class PayDuesInformation
     {        
         public string BranchName { set => _branchName = value; }
-        public bool IsAllowLogin => _currentPartyInfo.IsAllowLogin;
+        public bool IsAllowLogin => _currentPartyBranchInfos.IsAllowLogin;
+
+        public PartyBranchInformations CurrentPartyBranchInfos => _currentPartyBranchInfos;
+
         //配置文件位置
         private readonly string _configurationUrl = @"https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/PartyPayconfiguration.xml";
 
@@ -24,7 +27,7 @@ namespace PayPartyMemberDues
         //支部配置文件
         private XmlDocument _branchConfigDoc = new XmlDocument();
         //支部信息文件
-        private PartyInformations _currentPartyInfo = null;
+        private PartyBranchInformations _currentPartyBranchInfos = null;
 
         /// <summary>
         /// 根据支部名称加载各个支部的数据地址以及党员信息
@@ -58,19 +61,19 @@ namespace PayPartyMemberDues
         }
 
         //支部党员信息
-        private Dictionary<string, PartyInformations> _allPartyInfoDoc = new Dictionary<string, PartyInformations>();
+        private Dictionary<string, PartyBranchInformations> _allPartyInfoDoc = new Dictionary<string, PartyBranchInformations>();
         /// <summary>
         /// 根据支部名称，加载各个支部的党员信息，采用享元模式，避免多次加载
         /// </summary>
         /// <param name="branchName"></param>
         private void LoadBranchInformations(string branchName)
         {
-            if (_allPartyInfoDoc.ContainsKey(branchName)) _currentPartyInfo = _allPartyInfoDoc[branchName];
+            if (_allPartyInfoDoc.ContainsKey(branchName)) _currentPartyBranchInfos = _allPartyInfoDoc[branchName];
             else
             {
                 //加载
-                _currentPartyInfo = new PartyInformations(_branchConfigDoc);
-                _allPartyInfoDoc.Add(branchName, _currentPartyInfo);
+                _currentPartyBranchInfos = new PartyBranchInformations(_branchConfigDoc);
+                _allPartyInfoDoc.Add(branchName, _currentPartyBranchInfos);
             }
         }    
 
@@ -109,7 +112,7 @@ namespace PayPartyMemberDues
         /// <returns></returns>
         public bool CheckId(string id)
         {
-            return _currentPartyInfo.CheckId(id);
+            return _currentPartyBranchInfos.CheckId(id);
         }
 
         /// <summary>
@@ -128,7 +131,7 @@ namespace PayPartyMemberDues
         /// <returns></returns>
         public Image GetPayQRCode(PayQRCodeType qRCodeType)
         {
-          return  _currentPartyInfo.GetPayQRCode(qRCodeType);
+          return  _currentPartyBranchInfos.GetPayQRCode(qRCodeType);
         }
     }
 }

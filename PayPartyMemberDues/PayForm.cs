@@ -12,13 +12,13 @@ namespace PayPartyMemberDues
 {
     public partial class PayForm : Form
     {
-        PayDuesInformation _partyDuesInfos = null;
-        public PayForm(PayDuesInformation info)
+        PartyBranchInformations _partyBranchDuesInfos = null;
+        public PayForm(PartyBranchInformations info)
         {
             InitializeComponent();
 
             //赋予初值
-            _partyDuesInfos = info;
+            _partyBranchDuesInfos = info;
             pictureBox1.Image = info.GetPayQRCode(PayDuesInformation.PayQRCodeType.Wechat);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 
@@ -29,6 +29,9 @@ namespace PayPartyMemberDues
         //写入党员的基本信息
         private void InitializeListView(ListView lv)
         {
+            //写入欢迎信息
+            WelcomLabel.Text = _partyBranchDuesInfos.CurrentPartyInfo.WelcomeString;
+
             //添加列名
             ColumnHeader c1 = new ColumnHeader
             {
@@ -71,8 +74,8 @@ namespace PayPartyMemberDues
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == 0) pictureBox1.Image = _partyDuesInfos.GetPayQRCode(PayDuesInformation.PayQRCodeType.AliPay);
-            if (comboBox1.SelectedIndex == 1) pictureBox1.Image = _partyDuesInfos.GetPayQRCode(PayDuesInformation.PayQRCodeType.Wechat);
+            if (comboBox1.SelectedIndex == 0) pictureBox1.Image = _partyBranchDuesInfos.GetPayQRCode(PayDuesInformation.PayQRCodeType.AliPay);
+            if (comboBox1.SelectedIndex == 1) pictureBox1.Image = _partyBranchDuesInfos.GetPayQRCode(PayDuesInformation.PayQRCodeType.Wechat);
         }
     }
 }

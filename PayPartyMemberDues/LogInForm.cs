@@ -50,7 +50,10 @@ namespace PayPartyMemberDues
                 if (!_payDuesInfos.CheckId(textBox1.Text)) return;
 
                 //激活主窗体
-                PayForm form = new PayForm(_payDuesInfos);
+                PayForm form = new PayForm(_payDuesInfos.CurrentPartyBranchInfos);
+                //激活当前的党员信息
+                _payDuesInfos.CurrentPartyBranchInfos.ActiveCurrentPartyInfo(textBox1.Text);
+
                 form.FormClosed += CloseForm;
                 Hide();
                 form.Show();

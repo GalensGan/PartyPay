@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace PayPartyMemberDues
 {
-    internal class PartyInformations
+    public class PartyBranchInformations
     {
         //是否允许登陆
         private  bool _isAllowLogin = false;
@@ -19,9 +19,54 @@ namespace PayPartyMemberDues
         //党员信息表
         private  XmlDocument _partyInfosDoc = new XmlDocument();
 
+        //当前党员信息
+        private APartyMemberInfo _currentPartyInfo = null;
+
         public bool IsAllowLogin => _isAllowLogin;
 
-        public PartyInformations(XmlDocument branchConfig)
+        public APartyMemberInfo CurrentPartyInfo => _currentPartyInfo;
+
+        /// <summary>
+        /// 用ID激活当前党员的信息
+        /// </summary>
+        /// <param name="id"></param>
+        public void ActiveCurrentPartyInfo(string id)
+        {
+            _currentPartyInfo = new APartyMemberInfo();
+
+            //获取所有的节点数据
+            XmlNodeList xmlNodeList = _partyInfosDoc.SelectNodes("/PartyInfos/PartyMember[@id='" + id + "']");
+            foreach (XmlNode node in xmlNodeList)
+            {
+                if (node.Name == "Name")
+                {
+                    _currentPartyInfo.Name = node.InnerText;
+                    continue;
+                }
+                if (node.Name == "Gender")
+                {
+                    _currentPartyInfo.Gender = node.InnerText;
+                    continue;
+                }
+                if (node.Name == "DuesPerMonth")
+                {
+                    _currentPartyInfo.DuesPerMonth =double.Parse(node.InnerText);
+                    continue;
+                }
+                if (node.Name == "AppPhone")
+                {
+                    _currentPartyInfo.AppPhoneNumber = node.InnerText;
+                    continue;
+                }
+                if (node.Name == "Department")
+                {
+                    _currentPartyInfo.Department = node.InnerText;
+                    continue;
+                }
+            }
+        }
+
+        public PartyBranchInformations(XmlDocument branchConfig)
         {
             //获取所有的节点数据
             XmlNodeList xmlNodeList = branchConfig.SelectNodes("/PartyBranches/PartyBranch");
@@ -96,5 +141,6 @@ namespace PayPartyMemberDues
             }
             else return true;
         }
+
     }
 }
