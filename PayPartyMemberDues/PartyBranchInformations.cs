@@ -7,17 +7,17 @@ namespace PayPartyMemberDues
     public class PartyBranchInformations
     {
         //是否允许登陆
-        private  bool _isAllowLogin = false;
+        private readonly bool _isAllowLogin = false;
         //信息文件
-        private  string _infoUrl = null;
+        private readonly string _infoUrl = null;
         //二维码位置文件
-        private  string _weChatCode = null;
-        private  string _aliPayCode = null;
+        private readonly string _weChatCode = null;
+        private readonly string _aliPayCode = null;
 
         //支付二维码
-        private  Dictionary<PayDuesInformation.PayQRCodeType, Image> _payCodeDic = new Dictionary<PayDuesInformation.PayQRCodeType, Image>();
+        private Dictionary<PayDuesInformation.PayQRCodeType, Image> _payCodeDic = new Dictionary<PayDuesInformation.PayQRCodeType, Image>();
         //党员信息表
-        private  XmlDocument _partyInfosDoc = new XmlDocument();
+        private XmlDocument _partyInfosDoc = new XmlDocument();
 
         //当前党员信息
         private APartyMemberInfo _currentPartyInfo = null;
@@ -32,10 +32,15 @@ namespace PayPartyMemberDues
         /// <param name="id"></param>
         public void ActiveCurrentPartyInfo(string id)
         {
-            _currentPartyInfo = new APartyMemberInfo();
+            _currentPartyInfo = new APartyMemberInfo
+            {
+                Id = id
+            };
 
             //获取所有的节点数据
             XmlNodeList xmlNodeList = _partyInfosDoc.SelectNodes("/PartyInfos/PartyMember[@id='" + id + "']");
+            if (xmlNodeList.Count == 0) return;
+            xmlNodeList = xmlNodeList[0].ChildNodes;
             foreach (XmlNode node in xmlNodeList)
             {
                 if (node.Name == "Name")
@@ -50,7 +55,7 @@ namespace PayPartyMemberDues
                 }
                 if (node.Name == "DuesPerMonth")
                 {
-                    _currentPartyInfo.DuesPerMonth =double.Parse(node.InnerText);
+                    _currentPartyInfo.DuesPerMonth = double.Parse(node.InnerText);
                     continue;
                 }
                 if (node.Name == "AppPhone")
@@ -61,6 +66,29 @@ namespace PayPartyMemberDues
                 if (node.Name == "Department")
                 {
                     _currentPartyInfo.Department = node.InnerText;
+                    continue;
+                }
+            }
+
+            //获取月份信息
+            XmlNodeList xmlNodeList2 = _partyInfosDoc.SelectNodes("/PartyInfos/MonthInfo");
+            if (xmlNodeList2.Count == 0) return;
+            xmlNodeList2 = xmlNodeList2[0].ChildNodes;
+            foreach (XmlNode node in xmlNodeList)
+            {
+                if (node.Name == "Count")
+                {
+                    _currentPartyInfo.MonthCount =double.Parse(node.InnerText);
+                    continue;
+                }
+                if (node.Name == "Start")
+                {
+                    _currentPartyInfo.StartMonth = node.InnerText;
+                    continue;
+                }
+                if (node.Name == "End")
+                {
+                    _currentPartyInfo.EndMonth = node.InnerText;
                     continue;
                 }
             }
@@ -104,7 +132,7 @@ namespace PayPartyMemberDues
         private void LoadPartyInfo()
         {
             //下载信息表
-            string str =CommonSDK.DownLoadText(_infoUrl);
+            string str = CommonSDK.DownLoadText(_infoUrl);
             _partyInfosDoc.LoadXml(str);
             //下载微信支付
             Image wechatImage = CommonSDK.DownLoadImage(_weChatCode);
@@ -133,7 +161,7 @@ namespace PayPartyMemberDues
         public bool CheckId(string id)
         {
             //获取所有的节点数据
-            XmlNodeList xmlNodeList = _partyInfosDoc.SelectNodes("/PartyInfos/PartyMember[@id='"+id+"']");
+            XmlNodeList xmlNodeList = _partyInfosDoc.SelectNodes("/PartyInfos/PartyMember[@id='" + id + "']");
             if (xmlNodeList.Count == 0)
             {
                 System.Windows.Forms.MessageBox.Show("在当前党支部中未能查询到您的信息，登陆失败。");

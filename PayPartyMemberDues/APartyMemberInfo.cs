@@ -9,6 +9,8 @@
         private double _duesPerMonth = 10;
         private double _monthCount = 3;
         private string _date = "1月到三月";
+        private string _startMonth = "2019.01";
+        private string _endMonth = "2019.03";
         private string _department = "设计所";
 
         /// <summary>
@@ -28,8 +30,16 @@
         public string AppPhoneNumber { get => _appPhoneNumber; set => _appPhoneNumber = value; }
         public double DuesPerMonth { get => _duesPerMonth; set => _duesPerMonth = value; }
         public double MonthCount { get => _monthCount; set => _monthCount = value; }
-        public string Date { get => _date; set => _date = value; }
+        public string Date
+        {
+            get
+            {
+                return _startMonth.ToString() + "~" + _endMonth.ToString();
+            }
+        }
         public string Department { get => _department; set => _department = value; }
+        public string StartMonth {set => _startMonth = value; }
+        public string EndMonth {set => _endMonth = value; }
     }
 
 }

@@ -27,9 +27,6 @@ namespace PayPartyMemberDues
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogInForm(info));
-
-
-
         }
     }
 }

@@ -32,44 +32,27 @@ namespace PayPartyMemberDues
             //写入欢迎信息
             WelcomLabel.Text = _partyBranchDuesInfos.CurrentPartyInfo.WelcomeString;
 
-            //添加列名
-            ColumnHeader c1 = new ColumnHeader
-            {
-                Width = 40,
-                Text = "姓名"
-            };
-            ColumnHeader c2 = new ColumnHeader
-            {
-                Width = 100,
-                Text = "身份证"
-            };
-            ColumnHeader c3 = new ColumnHeader
-            {
-                Width = 100,
-                Text = "每月缴费基数"
-            };
-            ColumnHeader c4 = new ColumnHeader
-            {
-                Width = 100,
-                Text = "上缴月份"
-            };
-            ColumnHeader c5 = new ColumnHeader
-            {
-                Width = 100,
-                Text = "合计"
-            };
             //设置属性
             lv.GridLines = true;  //显示网格线
             lv.FullRowSelect = true;  //显示全行
             lv.MultiSelect = false;  //设置只能单选
             lv.View = View.Details;  //设置显示模式为详细
             lv.HoverSelection = true;  //当鼠标停留数秒后自动选择
+
             //把列名添加到listview中
-            lv.Columns.Add(c1);
-            lv.Columns.Add(c2);
-            lv.Columns.Add(c3);
-            lv.Columns.Add(c4);
-            lv.Columns.Add(c5);
+            lv.Columns.Add("姓  名",51,HorizontalAlignment.Center);
+            lv.Columns.Add("身份证", 153, HorizontalAlignment.Center);
+            lv.Columns.Add("党费基数", 68, HorizontalAlignment.Center);
+            lv.Columns.Add("党费月份", 120, HorizontalAlignment.Center);
+            lv.Columns.Add("合计(元)", 60, HorizontalAlignment.Center);
+
+            APartyMemberInfo info = _partyBranchDuesInfos.CurrentPartyInfo;
+            ListViewItem liRow = new ListViewItem(info.Name);
+            liRow.SubItems.Add(info.Id);
+            liRow.SubItems.Add(info.DuesPerMonth.ToString());
+            liRow.SubItems.Add(info.Date);
+            liRow.SubItems.Add(info.TotalMoney.ToString());
+            lv.Items.Add(liRow);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -17,7 +17,7 @@ namespace PayPartyMemberDues
 
         //配置文件位置
         private readonly string _configurationUrl = @"https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/PartyPayconfiguration.xml";
-
+        
         
         //支部名称
         private string _branchName = null;

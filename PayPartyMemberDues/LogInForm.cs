@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace PayPartyMemberDues
     public partial class LogInForm : Form
     {
         private PayDuesInformation _payDuesInfos = null;
+        private List<string> _branchList = new List<string>();
         public LogInForm(PayDuesInformation info)
         {
             InitializeComponent();
@@ -25,19 +27,22 @@ namespace PayPartyMemberDues
             {
                 StreamReader reader = new StreamReader(localPath);
                 string branchNmae = reader.ReadLine();
+                _branchList.Add(branchNmae);
                 string idStr = reader.ReadLine();
                 comboBox1.Items.Clear();
                 comboBox1.Items.Add(branchNmae);
                 comboBox1.SelectedIndex = 0;
                 textBox1.Text = idStr;
-                reader.Close();
+                reader.Close();                
             }
             else
             {
                 //获取所有的节点数据
                 comboBox1.Items.Clear();
-                comboBox1.Items.AddRange(_payDuesInfos.GetAllBranchNames().ToArray());
+                _branchList.AddRange(_payDuesInfos.GetAllBranchNames());
+                comboBox1.Items.AddRange(_branchList.ToArray());
             }
+            _isAllowSearch = true;
         }
 
         //登陆操作
@@ -49,10 +54,11 @@ namespace PayPartyMemberDues
                 //先进行用户验证
                 if (!_payDuesInfos.CheckId(textBox1.Text)) return;
 
-                //激活主窗体
-                PayForm form = new PayForm(_payDuesInfos.CurrentPartyBranchInfos);
                 //激活当前的党员信息
                 _payDuesInfos.CurrentPartyBranchInfos.ActiveCurrentPartyInfo(textBox1.Text);
+
+                //激活主窗体
+                PayForm form = new PayForm(_payDuesInfos.CurrentPartyBranchInfos); 
 
                 form.FormClosed += CloseForm;
                 Hide();
@@ -106,6 +112,47 @@ namespace PayPartyMemberDues
                     button1.ForeColor = Color.Red;
                 }
             }
+        }
+
+        //实现搜索功能
+        bool _isAllowSearch = false;
+        private void comboBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (!_isAllowSearch) return;
+            List<string> newItems = new List<string>();
+            foreach (string item in _branchList)
+            {
+                if (item.Contains(textBox1.Text)) newItems.Add(item);
+            }
+            comboBox1.Items.Clear();
+            comboBox1.Items.AddRange(newItems.ToArray());
+            Cursor = Cursors.Default;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+        //重写窗体，使窗体可以不通过自带标题栏实现移动
+        protected override void WndProc(ref Message m)
+        {
+            //当重载窗体的 WndProc 方法时，可以截获 WM_NCHITTEST 消息并改些该消息， 
+            //当判断鼠标事件发生在客户区时，改写改消息，发送 HTCAPTION 给窗体， 
+            //这样，窗体收到的消息就时 HTCAPTION ，在客户区通过鼠标来拖动窗体就如同通过标题栏来拖动一样。 
+            //注意：当你重载 WndProc 并改写鼠标事件后，整个窗体的鼠标事件也就随之改变了。 
+            switch (m.Msg)
+            {
+                case WM_NCHITTEST:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == HTCLIENT)
+                        m.Result = (IntPtr)HTCAPTION;
+                    return;
+            }
+            base.WndProc(ref m);
         }
     }
 }
