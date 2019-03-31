@@ -48,9 +48,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(184, 113);
+            this.button1.Location = new System.Drawing.Point(183, 112);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.Size = new System.Drawing.Size(92, 32);
             this.button1.TabIndex = 1;
             this.button1.Text = "登陆";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,7 +70,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(447, 164);
+            this.ClientSize = new System.Drawing.Size(447, 161);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);

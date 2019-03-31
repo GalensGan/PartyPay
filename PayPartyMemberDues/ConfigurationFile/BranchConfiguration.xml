@@ -2,8 +2,8 @@
 <PartyBranches>
 	<PartyBranch>
     <IsAllowLogin>false</IsAllowLogin>
-		<InfoAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml</InfoAddress>
-		<WeChatQRCodeAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.jpg</WeChatQRCodeAddress>
-		<AliPayQRCodeAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.jpg</AliPayQRCodeAddress>
+		<InfoAddress>http://files.git.oschina.net/group1/M00/07/22/PaAvDFygHQWAP-12AAARLgnZiSs060.xml?token=b6c3ebda979c4d6699f5dee87da396eb&amp;ts=1553999949&amp;attname=%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml</InfoAddress>
+		<WeChatQRCodeAddress>http://files.git.oschina.net/group1/M00/07/22/PaAvDFygHLGASJ5HAAGOt0Kpp4o669.jpg?token=95d76ce2888100a53b13611370fff7cc&amp;ts=1553999949&amp;attname=%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.jpg</WeChatQRCodeAddress>
+		<AliPayQRCodeAddress>http://files.git.oschina.net/group1/M00/07/22/PaAvDFygHD6AZEdIAADvin8YqYY935.jpg?token=324212b45daa4beaf5989ad13faa534b&amp;ts=1553999949&amp;attname=%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.jpg</AliPayQRCodeAddress>
 	</PartyBranch>
 </PartyBranches>

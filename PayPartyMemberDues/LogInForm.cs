@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -89,7 +90,18 @@ namespace PayPartyMemberDues
             {
                 _payDuesInfos.LoadBranchConfig(comboBox1.Text);
                 lastIndex = comboBox1.SelectedIndex;
-                button1.Enabled = _payDuesInfos.IsAllowLogin;
+                if (_payDuesInfos.IsAllowLogin)
+                {
+                    button1.Enabled = true;
+                    button1.Text = "登陆";
+                    button1.ForeColor = Color.Black;
+                }
+                else
+                {
+                    button1.Enabled = false;
+                    button1.Text = "暂停服务";
+                    button1.ForeColor = Color.Red;
+                }
             }
         }
     }
