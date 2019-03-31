@@ -32,7 +32,7 @@ namespace PayPartyMemberDues
             //添加列名
             ColumnHeader c1 = new ColumnHeader
             {
-                Width = 100,
+                Width = 40,
                 Text = "姓名"
             };
             ColumnHeader c2 = new ColumnHeader

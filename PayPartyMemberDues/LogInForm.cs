@@ -61,11 +61,17 @@ namespace PayPartyMemberDues
         //保存个人基本信息
         private void SaveUserData()
         {
-            string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PartyPay\userConfig.txt";
-            // 创建文件
+            string folderPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            // 创建文件夹
+            string sPath = folderPath + "\\PartyPay";
+            if (!Directory.Exists(sPath))
+            {
+                Directory.CreateDirectory(sPath);
+            }
+            string localPath = sPath + "\\userConfig.txt";
             FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.ReadWrite); //可以指定盘符，也可以指定任意文件名，还可以为word等文件
             StreamWriter sw = new StreamWriter(fs); // 创建写入流
-            sw.WriteLine(comboBox1.Text+"\n"+textBox1.Text); 
+            sw.Write(comboBox1.Text+"\n"+textBox1.Text); 
             sw.Close(); //关闭文件
         }
 
@@ -83,6 +89,7 @@ namespace PayPartyMemberDues
             {
                 _payDuesInfos.LoadBranchConfig(comboBox1.Text);
                 lastIndex = comboBox1.SelectedIndex;
+                button1.Enabled = _payDuesInfos.IsAllowLogin;
             }
         }
     }

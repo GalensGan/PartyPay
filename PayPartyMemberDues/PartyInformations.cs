@@ -7,17 +7,19 @@ namespace PayPartyMemberDues
     internal class PartyInformations
     {
         //是否允许登陆
-        private readonly bool _isAllowLogin = false;
+        private  bool _isAllowLogin = false;
         //信息文件
-        private readonly string _infoUrl = null;
+        private  string _infoUrl = null;
         //二维码位置文件
-        private readonly string _weChatCode = null;
-        private readonly string _aliPayCode = null;
+        private  string _weChatCode = null;
+        private  string _aliPayCode = null;
 
         //支付二维码
-        private readonly Dictionary<PayDuesInformation.PayQRCodeType, Image> _payCodeDic = new Dictionary<PayDuesInformation.PayQRCodeType, Image>();
+        private  Dictionary<PayDuesInformation.PayQRCodeType, Image> _payCodeDic = new Dictionary<PayDuesInformation.PayQRCodeType, Image>();
         //党员信息表
-        private readonly XmlDocument _partyInfosDoc = new XmlDocument();
+        private  XmlDocument _partyInfosDoc = new XmlDocument();
+
+        public bool IsAllowLogin => _isAllowLogin;
 
         public PartyInformations(XmlDocument branchConfig)
         {

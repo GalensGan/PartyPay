@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PartyBranches>
 	<PartyBranch>
-    <IsAllowLogin>true</IsAllowLogin>
+    <IsAllowLogin>false</IsAllowLogin>
 		<InfoAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml</InfoAddress>
 		<WeChatQRCodeAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%BE%AE%E4%BF%A1%E6%94%AF%E4%BB%98.jpg</WeChatQRCodeAddress>
 		<AliPayQRCodeAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98.jpg</AliPayQRCodeAddress>

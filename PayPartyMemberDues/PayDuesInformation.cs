@@ -11,7 +11,7 @@ namespace PayPartyMemberDues
     public class PayDuesInformation
     {        
         public string BranchName { set => _branchName = value; }
-
+        public bool IsAllowLogin => _currentPartyInfo.IsAllowLogin;
         //配置文件位置
         private readonly string _configurationUrl = @"https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/PartyPayconfiguration.xml";
 
