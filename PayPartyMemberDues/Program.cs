@@ -19,8 +19,15 @@ namespace PayPartyMemberDues
 
             //从github上下载配置信息
             PayDuesInformation info = new PayDuesInformation();
-            info.LoadConfigurationFile();
-
+            try
+            {
+                info.LoadConfigurationFile();
+            }
+            catch
+            {
+                MessageBox.Show("目前网速较慢，请重新登陆");
+                return;
+            }
             //读取本地支部数据，如果没有，则从服务器上下载
             //如果有，则对比服务器上的支部
 
