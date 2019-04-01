@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PartyBranches>
+	<PartyBranch>
+    <IsAllowLogin>true</IsAllowLogin>
+		<InfoAddress>http://files.git.oschina.net/group1/M00/07/22/PaAvDFygHQWAP-12AAARLgnZiSs060.xml?token=b6c3ebda979c4d6699f5dee87da396eb&amp;ts=1553999949&amp;attname=%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/MunicipalWuhanBranch/%E5%85%9A%E5%91%98%E4%BF%A1%E6%81%AF%E8%A1%A8.xml</InfoAddress>
+		<WeChatQRCodeAddress>none</WeChatQRCodeAddress>
+		<AliPayQRCodeAddress>http://files.git.oschina.net/group1/M00/07/25/PaAvDFyhxdKAcK1pAADZoM0gMCU237.jpg?token=7f83ad83a8a566076071b8e800d7b352&amp;ts=1554106906&amp;attname=%E6%94%AF%E4%BB%98%E5%AE%9D%E6%94%AF%E4%BB%98%EF%BC%88%E5%BC%A0%E8%8E%B9%EF%BC%89.jpg</AliPayQRCodeAddress>
+	</PartyBranch>
+</PartyBranches>

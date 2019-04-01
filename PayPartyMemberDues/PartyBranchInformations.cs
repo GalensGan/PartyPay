@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Xml;
 
 namespace PayPartyMemberDues
@@ -134,12 +135,20 @@ namespace PayPartyMemberDues
             //下载信息表
             string str = CommonSDK.DownLoadText(_infoUrl);
             _partyInfosDoc.LoadXml(str);
+
             //下载微信支付
-            Image wechatImage = CommonSDK.DownLoadImage(_weChatCode);
-            _payCodeDic.Add(PayDuesInformation.PayQRCodeType.Wechat, wechatImage);
+            if (_weChatCode.Contains("http"))
+            {
+                Image wechatImage = CommonSDK.DownLoadImage(_weChatCode);
+                _payCodeDic.Add(PayDuesInformation.PayQRCodeType.Wechat, wechatImage);
+            }
+
             //下载支付宝支付
-            Image aliPayImage = CommonSDK.DownLoadImage(_aliPayCode);
-            _payCodeDic.Add(PayDuesInformation.PayQRCodeType.AliPay, aliPayImage);
+            if (_aliPayCode.Contains("http"))
+            {
+                Image aliPayImage = CommonSDK.DownLoadImage(_aliPayCode);
+                _payCodeDic.Add(PayDuesInformation.PayQRCodeType.AliPay, aliPayImage);
+            }
         }
 
         /// <summary>
@@ -150,7 +159,19 @@ namespace PayPartyMemberDues
         public Image GetPayQRCode(PayDuesInformation.PayQRCodeType qrName)
         {
             if (_payCodeDic.ContainsKey(qrName)) return _payCodeDic[qrName];
+            else if (_payCodeDic.Count > 0) return _payCodeDic.FirstOrDefault().Value;
             else return null;
+        }
+
+        /// <summary>
+        /// 获取二维码的个数
+        /// </summary>
+        public int PayQRCodeCount
+        {
+            get
+            {
+              return _payCodeDic.Count;
+            }
         }
 
         /// <summary>

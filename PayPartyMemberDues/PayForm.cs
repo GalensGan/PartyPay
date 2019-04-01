@@ -21,7 +21,8 @@ namespace PayPartyMemberDues
             _partyBranchDuesInfos = info;
             pictureBox1.Image = info.GetPayQRCode(PayDuesInformation.PayQRCodeType.Wechat);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
+            //隐藏选择框
+            if (info.PayQRCodeCount < 2) comboBox1.Visible = false;
             //写入基本信息
             InitializeListView(listView1);
         }

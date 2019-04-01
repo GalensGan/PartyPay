@@ -8,7 +8,6 @@
         private string _appPhoneNumber = "12345678901";
         private double _duesPerMonth = 10;
         private double _monthCount = 3;
-        private string _date = "1月到三月";
         private string _startMonth = "2019.01";
         private string _endMonth = "2019.03";
         private string _department = "设计所";

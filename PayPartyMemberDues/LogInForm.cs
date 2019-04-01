@@ -22,26 +22,31 @@ namespace PayPartyMemberDues
         {
             //获取本地文件
             string localPath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\PartyPay\userConfig.txt";
+            //获取所有的分支名称
+            List<string> branchesNameList = _payDuesInfos.GetAllBranchNames();
             //存在时，直接调用用户的数据
             if (File.Exists(localPath))
             {
                 StreamReader reader = new StreamReader(localPath);
                 string branchNmae = reader.ReadLine();
-                _branchList.Add(branchNmae);
-                string idStr = reader.ReadLine();
-                comboBox1.Items.Clear();
-                comboBox1.Items.Add(branchNmae);
-                comboBox1.SelectedIndex = 0;
-                textBox1.Text = idStr;
-                reader.Close();                
+                if (branchesNameList.Contains(branchNmae))
+                {
+                    _branchList.Add(branchNmae);
+                    string idStr = reader.ReadLine();
+                    comboBox1.Items.Clear();
+                    comboBox1.Items.Add(branchNmae);
+                    comboBox1.SelectedIndex = 0;
+                    textBox1.Text = idStr;
+                    reader.Close();
+                    _isAllowSearch = true;
+                    return;
+                }
+                reader.Close();
             }
-            else
-            {
-                //获取所有的节点数据
-                comboBox1.Items.Clear();
-                _branchList.AddRange(_payDuesInfos.GetAllBranchNames());
-                comboBox1.Items.AddRange(_branchList.ToArray());
-            }
+            //获取所有的节点数据
+            comboBox1.Items.Clear();
+            _branchList.AddRange(_payDuesInfos.GetAllBranchNames());
+            comboBox1.Items.AddRange(_branchList.ToArray());
             _isAllowSearch = true;
         }
 
@@ -58,7 +63,7 @@ namespace PayPartyMemberDues
                 _payDuesInfos.CurrentPartyBranchInfos.ActiveCurrentPartyInfo(textBox1.Text);
 
                 //激活主窗体
-                PayForm form = new PayForm(_payDuesInfos.CurrentPartyBranchInfos); 
+                PayForm form = new PayForm(_payDuesInfos.CurrentPartyBranchInfos);
 
                 form.FormClosed += CloseForm;
                 Hide();
@@ -81,7 +86,7 @@ namespace PayPartyMemberDues
             string localPath = sPath + "\\userConfig.txt";
             FileStream fs = new FileStream(localPath, FileMode.Create, FileAccess.ReadWrite); //可以指定盘符，也可以指定任意文件名，还可以为word等文件
             StreamWriter sw = new StreamWriter(fs); // 创建写入流
-            sw.Write(comboBox1.Text+"\n"+textBox1.Text); 
+            sw.Write(comboBox1.Text + "\n" + textBox1.Text);
             sw.Close(); //关闭文件
         }
 
@@ -115,23 +120,23 @@ namespace PayPartyMemberDues
         }
 
         //实现搜索功能
-        bool _isAllowSearch = false;
+        private bool _isAllowSearch = false;
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
-            if (!_isAllowSearch) return;
-            List<string> newItems = new List<string>();
-            foreach (string item in _branchList)
-            {
-                if (item.Contains(textBox1.Text)) newItems.Add(item);
-            }
-            comboBox1.Items.Clear();
-            comboBox1.Items.AddRange(newItems.ToArray());
-            Cursor = Cursors.Default;
+            //if (!_isAllowSearch) return;
+            //List<string> newItems = new List<string>();
+            //foreach (string item in _branchList)
+            //{
+            //    if (item.Contains(textBox1.Text)) newItems.Add(item);
+            //}
+            //comboBox1.Items.Clear();
+            //comboBox1.Items.AddRange(newItems.ToArray());
+            //Cursor = Cursors.Default;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private const int WM_NCHITTEST = 0x84;

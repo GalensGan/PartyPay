@@ -3,4 +3,7 @@
 	<PartyBranch name="中国市政工程西北设计院武汉分院党支部">
     <clientAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/BranchConfiguration.xml</clientAddress>
 	</PartyBranch>
+  <PartyBranch name="市政西北院武汉分公司设计三所">
+    <clientAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/BranchConfiguration.xml</clientAddress>
+	</PartyBranch>
 </PartyBranches>
