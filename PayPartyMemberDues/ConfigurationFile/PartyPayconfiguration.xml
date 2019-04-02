@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PartyBranches>
 	<PartyBranch name="中国市政工程西北设计院武汉分院党支部">
-    <clientAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/BranchConfiguration.xml</clientAddress>
+    <clientAddress>https://gitee.com/noctiflorous/PartyPay/raw/master/PayPartyMemberDues/ConfigurationFile/BranchConfiguration.xml</clientAddress>
 	</PartyBranch>
   <PartyBranch name="市政西北院武汉分公司设计三所">
     <clientAddress>https://raw.githubusercontent.com/GalensGan/PartyPay/master/PayPartyMemberDues/ConfigurationFile/BranchConfigurationForDepartmentThree.xml</clientAddress>
