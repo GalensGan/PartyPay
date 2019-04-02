@@ -112,7 +112,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bitbug_favicon.ico" />
-    <Content Include="ConfigurationFile\BranchConfigurationForDepartmentThree.xml" />
+    <Content Include="ConfigurationFile\BranchConfigurationForDepartmentOne.xml" />
+    <Content Include="ConfigurationFile\BranchConfigurationForDepartmentThree.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ConfigurationFile\BranchConfiguration.xml" />
     <Content Include="ConfigurationFile\PartyPayConfiguration.xml" />
     <Content Include="MunicipalWuhanBranch\党员信息表.xml" />
